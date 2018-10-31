@@ -41,7 +41,8 @@
 #include "stm32f1xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "..\Inc\Middleware\input.h"
+#include "..\Inc\Middleware\triac.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -111,7 +112,7 @@ int main(void)
   MX_RTC_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  input_initAnalog(&hadc1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,6 +123,13 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+
+	  triac_openAll();
+	  triac_closeAll();
+	  triac_stopAll();
+
+	  input_getInputs();
+
 
   }
   /* USER CODE END 3 */
@@ -266,7 +274,7 @@ static void MX_RTC_Init(void)
     */
   hrtc.Instance = RTC;
   hrtc.Init.AsynchPrediv = RTC_AUTO_1_SECOND;
-  hrtc.Init.OutPut = RTC_OUTPUTSOURCE_ALARM;
+  hrtc.Init.OutPut = RTC_OUTPUTSOURCE_NONE;
   if (HAL_RTC_Init(&hrtc) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
