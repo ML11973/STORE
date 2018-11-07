@@ -71,7 +71,7 @@ extern uint16_t temperature;
  *
  * 			The process runs solely on peripherals, saving us CPU power.
  */
-void input_initAnalog(ADC_HandleTypeDef*);
+void input_initAnalog(/*ADC_HandleTypeDef**/);
 
 
 

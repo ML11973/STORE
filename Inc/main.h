@@ -57,6 +57,8 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
+#define TIM1_MAX	36E6
+#define F_CPU		72E7
 
 /* USER CODE END Private defines */
 

@@ -22,7 +22,11 @@
  ***************************************************************************/
 
 /* USER CODE BEGIN Variables */
-uint16_t analogValue [ANALOG_NUMBER] = {0};
+extern ADC_HandleTypeDef hadc1;
+//extern DMA_HandleTypeDef hdma_adc1;
+
+
+uint32_t analogValue [ANALOG_NUMBER] = {0};
 
 uint8_t keypadValue [KEYPAD_NUMBER] = {0};
 const uint8_t keypadAddress [KEYPAD_NUMBER] = {
@@ -52,9 +56,9 @@ uint16_t temperature;
  * FUNCTIONS																*
  ***************************************************************************/
 
-void input_initAnalog(ADC_HandleTypeDef *hadcLocal)
+void input_initAnalog(/*ADC_HandleTypeDef* hadcLocal*/)
 {
-	HAL_ADC_Start_DMA(hadcLocal, analogValue, ANALOG_NUMBER);
+	HAL_ADC_Start_DMA(&hadc1, analogValue, ANALOG_NUMBER);
 }
 
 
